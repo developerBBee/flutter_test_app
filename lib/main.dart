@@ -12,15 +12,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Layout',
+      // theme: ThemeData(
+      //   primaryColor: const Color(0xff5f6f5f),
+      //   primaryColorLight: const Color(0xff8f8f8f),
+      //   primaryColorDark: const Color(0xff1f251f),
+      //   canvasColor: const Color(0xffefafdf),
+      //   primaryTextTheme: const TextTheme(headline6: TextStyle(color: Color(0xffefefef))),
+      //   floatingActionButtonTheme: const FloatingActionButtonThemeData(backgroundColor: Color(0xff3f0f5f)),
+      //   appBarTheme: const AppBarTheme(color: Color(0xff4f0f4f)),
+      //   visualDensity: VisualDensity.adaptivePlatformDensity
+      // ),
       theme: ThemeData(
-        primaryColor: const Color(0xff5f6f5f),
-        primaryColorLight: const Color(0xff8f8f8f),
-        primaryColorDark: const Color(0xff1f251f),
-        canvasColor: const Color(0xffefafdf),
-        primaryTextTheme: const TextTheme(headline6: TextStyle(color: Color(0xffefefef))),
-        floatingActionButtonTheme: const FloatingActionButtonThemeData(backgroundColor: Color(0xff3f0f5f)),
-        appBarTheme: const AppBarTheme(color: Color(0xff4f0f4f)),
-        visualDensity: VisualDensity.adaptivePlatformDensity
+          primarySwatch: Colors.purple,
       ),
       home: Scaffold(
         appBar: AppBar(
@@ -41,14 +44,17 @@ class MyApp extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center, // To center the top and bottom of the column
               children: const [
-                Text('x:300 y:400',
-                  style: TextStyle(fontSize: 20),
+                Text('width:300 height:400\n',
+                  style: TextStyle(
+                      fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
                 ),
-                Text('background:0xff9f4faf',
-                  style: TextStyle(fontSize: 20),
+                Text('background:0xff9f4faf\n',
+                  style: TextStyle(
+                      fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
                 ),
                 Text('border color:0xffaf4f9f',
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(
+                      fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
                 ),
               ]
             )
