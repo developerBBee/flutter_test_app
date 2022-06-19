@@ -1,6 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+import 'calculator/calculator.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,16 +31,19 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  final formatter = NumberFormat("#,###.#");
+  final calc = Calculator();
+  num resultNumber = 0;
+  var resultString = '0';
+  var buffer = '';
+  var operator = '';
+  String? x1 = null;
+  String? x2 = null;
 
-  void _incrementCounter() {
+  void _onPressed(String str) {
     setState(() {
-      _counter++;
+      resultString = calc.calculateEvent(str);
     });
-  }
-
-  void _onPressed() {
-
   }
 
   @override
@@ -88,8 +94,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.end,
-                        children: const [
-                          Text('1,000,000,000,000', style: TextStyle(fontSize: 40),)
+                        children: [
+                           Text(resultString, style: const TextStyle(fontSize: 40),)
                         ],
                       ),
                     ],
@@ -100,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     children: [
                       Row(
                         children: const [
-                          Text('+-*/', style: TextStyle(fontSize: 40),),
+                          //Text('+-*/', style: TextStyle(fontSize: 40),),
                         ],
                       ),
                     ],
@@ -123,16 +129,16 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: [
                     TextButton(
                       style: buttonStyle,
-                      onPressed: _onPressed, child: const Text('Ｃ'),),
+                      onPressed: ()=>_onPressed('C'), child: const Text('Ｃ'),),
                     TextButton(
                       style: buttonStyle,
-                      onPressed: _onPressed, child: const Text('ＣＥ'),),
+                      onPressed: ()=>_onPressed('CE'), child: const Text('ＣＥ'),),
                     TextButton(
                       style: buttonStyle,
-                      onPressed: _onPressed, child: const Text('→'),),
+                      onPressed: ()=>_onPressed('del'), child: const Text('→'),),
                     TextButton(
                       style: buttonStyle,
-                      onPressed: _onPressed, child: const Text('／'),),
+                      onPressed: ()=>_onPressed('div'), child: const Text('／'),),
                   ],
                 ),
                 Row(
@@ -141,16 +147,16 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: [
                     TextButton(
                       style: buttonStyle,
-                      onPressed: _onPressed, child: const Text('７'),),
+                      onPressed: ()=>_onPressed('7'), child: const Text('７'),),
                     TextButton(
                       style: buttonStyle,
-                      onPressed: _onPressed, child: const Text('８'),),
+                      onPressed: ()=>_onPressed('8'), child: const Text('８'),),
                     TextButton(
                       style: buttonStyle,
-                      onPressed: _onPressed, child: const Text('９'),),
+                      onPressed: ()=>_onPressed('9'), child: const Text('９'),),
                     TextButton(
                       style: buttonStyle,
-                      onPressed: _onPressed, child: const Text('＊'),),
+                      onPressed: ()=>_onPressed('mul'), child: const Text('＊'),),
                   ],
                 ),
                 Row(
@@ -159,16 +165,16 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: [
                     TextButton(
                       style: buttonStyle,
-                      onPressed: _onPressed, child: const Text('４'),),
+                      onPressed: ()=>_onPressed('4'), child: const Text('４'),),
                     TextButton(
                       style: buttonStyle,
-                      onPressed: _onPressed, child: const Text('５'),),
+                      onPressed: ()=>_onPressed('5'), child: const Text('５'),),
                     TextButton(
                       style: buttonStyle,
-                      onPressed: _onPressed, child: const Text('６'),),
+                      onPressed: ()=>_onPressed('6'), child: const Text('６'),),
                     TextButton(
                       style: buttonStyle,
-                      onPressed: _onPressed, child: const Text('ー'),),
+                      onPressed: ()=>_onPressed('min'), child: const Text('－'),),
                   ],
                 ),
                 Row(
@@ -177,16 +183,16 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: [
                     TextButton(
                       style: buttonStyle,
-                      onPressed: _onPressed, child: const Text('１'),),
+                      onPressed: ()=>_onPressed('1'), child: const Text('１'),),
                     TextButton(
                       style: buttonStyle,
-                      onPressed: _onPressed, child: const Text('２'),),
+                      onPressed: ()=>_onPressed('2'), child: const Text('２'),),
                     TextButton(
                       style: buttonStyle,
-                      onPressed: _onPressed, child: const Text('３'),),
+                      onPressed: ()=>_onPressed('3'), child: const Text('３'),),
                     TextButton(
                       style: buttonStyle,
-                      onPressed: _onPressed, child: const Text('＋'),),
+                      onPressed: ()=>_onPressed('plu'), child: const Text('＋'),),
                   ],
                 ),
                 Row(
@@ -195,16 +201,16 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: [
                     TextButton(
                       style: buttonStyle,
-                      onPressed: _onPressed, child: const Text('０'),),
+                      onPressed: ()=>_onPressed('0'), child: const Text('０'),),
                     TextButton(
                       style: buttonStyle,
-                      onPressed: _onPressed, child: const Text('００'),),
+                      onPressed: ()=>_onPressed('00'), child: const Text('００'),),
                     TextButton(
                       style: buttonStyle,
-                      onPressed: _onPressed, child: const Text('．'),),
+                      onPressed: ()=>_onPressed('.'), child: const Text('．'),),
                     TextButton(
                       style: buttonStyle,
-                      onPressed: _onPressed, child: const Text('＝'),),
+                      onPressed: ()=>_onPressed('equ'), child: const Text('＝'),),
                   ],
                 ),
               ],
