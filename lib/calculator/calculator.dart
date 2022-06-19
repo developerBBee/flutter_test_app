@@ -11,7 +11,11 @@ class Calculator {
 
   String calculateEvent(String? str) {
     if (str == '.' || isNumeric(str)) {
-      if (_operator == 'equ') _operator = '';
+      if (_operator == 'equ') {
+        _operator = '';
+        _x1 = null;
+        _x2 = null;
+      }
       if (str == '.') {
         if (!_buffer.contains('.')) {
           _buffer += '.';
